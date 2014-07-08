@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ClothesShop.ViewModel.DeletingCategory>
+
+@{
+    ViewBag.Title = "Danh Mục";
+}
+
+<h2>Danh Sách Danh Mục</h2>
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("Create")">        
+        <span class="glyphicon glyphicon-plus"></span>
+        Thêm
+    </a>
+    <button type="button" class="btn btn-danger" onclick="document.getElementById('category-form').submit()">
+        <span class="glyphicon glyphicon-remove"></span>
+        Xóa
+    </button>
+</p>
+@if (Model == null || Model.Count() == 0)
+{
+    <p>Chưa có dữ liệu trong mục này!</p>
+}
+else
+{
+    <form id="category-form" method="post" action="@Url.Action("Delete")">
+        <table class="table">
+            <tr>
+                <th>
+                    <input type="checkbox" id="checkAll" />
+                </th>
+                <th>Tên
+                </th>
+                <th>Thuộc Danh Mục
+                </th>
+                <th></th>
+            </tr>
+
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <input type="hidden" value="@Model.ElementAt(i).CatID" name="categories[@i.ToString()].CatID" />
+                    <td>
+                        @if (Model.ElementAt(i).CanDelete)
+                        {                            
+                            <input type="checkbox" name="categories[@i.ToString()].IsDelete" />
+                        }
+                        else
+                        {                            
+                            <input type="checkbox" name="categories[@i.ToString()].IsDelete" disabled="true"/>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).CatName)
+                        <input type="hidden" value="@Model.ElementAt(i).CatName" name="categories[@i.ToString()].CatName" />                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).ParentName)
+                        <input type="hidden" value="@Model.ElementAt(i).ParentName" name="categories[@i.ToString()].ParentName" />
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = Model.ElementAt(i).CatID })" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Sửa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </form>
+}
+
+<script>
+    $(document).ready(function () {
+        $("#nav_category").toggleClass("active");
+    });
+</script>

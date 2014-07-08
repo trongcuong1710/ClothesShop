@@ -1,0 +1,25 @@
+﻿@model ClothesShop.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Category</legend>
+
+    <div class="display-label">CatName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CatName)
+    </div>
+
+    <div class="display-label">ParentCategory</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ParentCategory.CatName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CatID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,50 @@
+﻿body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.error {
+    color: Red;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.left-inner-addon {
+    position: relative;
+}
+
+.left-inner-addon input {
+    padding-left: 30px;    
+}
+
+.left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+.row {
+    margin-bottom: 20px;
+}
