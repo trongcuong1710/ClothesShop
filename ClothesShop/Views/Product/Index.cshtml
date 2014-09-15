@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ClothesShop.ViewModel.ProductViewModel>
+
+@{
+    ViewBag.Title = "Sản Phẩm";
+}
+
+<script>
+    function submit(url) {
+        $("#product-form").attr("action", url);
+        $("#product-form").submit();
+    }
+
+    $(document).ready(function () {
+        $("#nav_product").toggleClass("active");
+    });
+</script>
+
+<h2>Danh Sách Sản Phẩm</h2>
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("Create")">        
+        <span class="glyphicon glyphicon-plus"></span>
+        Thêm
+    </a>
+    <button type="button" class="btn btn-primary" onclick="submit('@Url.Action("Edit")');">
+        <span class="glyphicon glyphicon-ok"></span>
+        Cập Nhật
+    </button>
+    <button type="button" class="btn btn-danger" onclick="submit('@Url.Action("Delete")');">
+        <span class="glyphicon glyphicon-remove"></span>
+        Xóa
+    </button>
+</p>
+@if (Model == null || Model.Count() == 0)
+{
+    <p>Chưa có dữ liệu trong mục này!</p>
+}
+else
+{
+    <form id="product-form" method="post">
+        <table class="table">
+            <tr>
+                <th>
+                    <input type="checkbox" id="checkAll" />
+                </th>
+                <th>
+                    Mã Sản Phẩm
+                </th>
+                <th>
+                    Tên Sản Phẩm
+                </th>
+                <th>
+                    Giá
+                </th>
+                <th>
+                    Mô Tả
+                </th>
+                <th>
+                    Thuộc Danh Mục
+                </th>
+                <th>
+                    Khuyến Mãi
+                </th>
+            </tr>
+
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <input type="hidden" value="@Model.ElementAt(i).ProID" name="products[@i.ToString()].ProID" />
+                    <td>                                                
+                        <input type="checkbox" name="products[@i.ToString()].IsDelete" />                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).Code)
+                        <input type="hidden" value="@Model.ElementAt(i).Code" name="products[@i.ToString()].Code" />                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).Name)
+                        <input type="hidden" value="@Model.ElementAt(i).Name" name="products[@i.ToString()].Name" />                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).Price)
+                        <input type="hidden" value="@Model.ElementAt(i).Price" name="products[@i.ToString()].Price" />                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).Description)
+                        <input type="hidden" value="@Model.ElementAt(i).Description" name="products[@i.ToString()].Description" />                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).Category)
+                        <input type="hidden" value="@Model.ElementAt(i).Category" name="products[@i.ToString()].Category" />
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(modelItem => Model.ElementAt(i).PromotionID, ViewBag.ProID as SelectList, "Chọn Mức Khuyến Mãi", 
+                                                    new {@class="form-control", name="products[" + i.ToString() + "].PromotionID"})                        
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = Model.ElementAt(i).ProID })" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Sửa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </form>
+}

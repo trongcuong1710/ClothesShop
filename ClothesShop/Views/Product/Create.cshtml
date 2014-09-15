@@ -1,0 +1,81 @@
+﻿@model ClothesShop.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Product</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductCode)
+            @Html.ValidationMessageFor(model => model.ProductCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductName)
+            @Html.ValidationMessageFor(model => model.ProductName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductPrice)
+            @Html.ValidationMessageFor(model => model.ProductPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CatID, "Category")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CatID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CatID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProID, "Promotion")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ProID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ProID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreateDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreateDate)
+            @Html.ValidationMessageFor(model => model.CreateDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

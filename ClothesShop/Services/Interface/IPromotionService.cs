@@ -14,10 +14,16 @@ namespace ClothesShop.Services.Interface
     public interface IPromotionService
     {
         /// <summary>
-        /// get deleting promotion view model
+        /// get all promotion
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DeletingPromotion> getPromotion();
+        IEnumerable<Promotion> getPromotion();
+
+        /// <summary>
+        /// get deleting promotion viewmodel
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<DeletingPromotion> getDeletingPromotion();
 
         /// <summary>
         /// get promotion by id

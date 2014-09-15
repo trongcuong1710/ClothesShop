@@ -95,7 +95,9 @@ namespace ClothesShop.Services
                                                               IsDelete = false,
                                                               Name = product.ProductName,
                                                               ProID = product.ProductID,
-                                                              PromotionID = product.ProID
+                                                              PromotionID = product.ProID,
+                                                              Price = product.ProductPrice,
+                                                              Description = product.Description 
                                                           };
 
                 return viewmodel;

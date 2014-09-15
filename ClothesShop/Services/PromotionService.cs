@@ -36,11 +36,29 @@ namespace ClothesShop.Services
         /// get all promotion
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ViewModel.DeletingPromotion> getPromotion()
+        public IEnumerable<Promotion> getPromotion()
         {
             try
             {
-                var promotions = this.repository.getPromotion();
+                var promotions = this.repository.getPromotion();               
+
+                return promotions;
+            }
+            catch (Exception)
+            {                
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// get deleting promotion view model
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ViewModel.DeletingPromotion> getDeletingPromotion()
+        {
+            try
+            {
+                var promotions = this.getPromotion();
 
                 var viewmodel = from promotion in promotions
                                 select new DeletingPromotion()
@@ -53,7 +71,7 @@ namespace ClothesShop.Services
                 return viewmodel;
             }
             catch (Exception)
-            {                
+            {
                 throw;
             }
         }

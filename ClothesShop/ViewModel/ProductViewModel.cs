@@ -28,12 +28,22 @@ namespace ClothesShop.ViewModel
         public string Code { get; set; }
 
         /// <summary>
+        /// product price
+        /// </summary>
+        public decimal Price { get; set; }
+
+        /// <summary>
+        /// description
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// category name
         /// </summary>
         public string Category { get; set; }
 
         /// <summary>
-        /// promotion id
+        /// promotion discount
         /// </summary>
         public int? PromotionID { get; set; }
 
